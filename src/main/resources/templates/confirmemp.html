@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container">
+
+    <p th:inline="text">Name: [[${emp.firstName}]] [[${emp.lastName}]]</p>
+    <p th:text="${emp.department}"></p>
+    <p th:text="${emp.cellphone}"></p>
+    <p th:text="${emp.workNUmber}"></p>
+    <a href="/addemployee"> Add employee 2</a>
+    <a href="/displayall"> Display All</a>
+</div>
+
+
+</body>
+</html>
