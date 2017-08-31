@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <th:block th:replace="base::header"></th:block>
 </head>
 <body>
-
+<th:block th:replace="base::navigation"></th:block>
 
 <div class="container">
 
@@ -17,6 +16,6 @@
     <a href="/displayall"> Display All</a>
 </div>
 
-
+<th:block th:replace="base::footer"></th:block>
 </body>
 </html>

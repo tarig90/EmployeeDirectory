@@ -12,12 +12,22 @@ public class Teams
     private long id;
     private String name;
 
-    @ManyToMany(mappedBy = "empToTeam")
+    @ManyToMany
     private Set<Employee> teamToEmp;
 
     public Teams()
     {}
 
+    public Teams(String name)
+    {
+        this.name = name;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.name;
+    }
 
     public long getId() {
         return id;
@@ -43,8 +53,9 @@ public class Teams
         this.teamToEmp = teamToEmp;
     }
 
-
-
+    public void addEmployee(Employee employee){
+        this.getTeamToEmp().add(employee);
+    }
 
 
 }

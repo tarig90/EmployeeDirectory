@@ -25,7 +25,7 @@ public class Employee
     private long cellphone;
     private long workNUmber;
 
-
+   @ManyToMany
     private Set<Teams> empToTeam;
 
 
@@ -99,6 +99,13 @@ public class Employee
     public void setEmpToTeam(Set<Teams> empToTeam) {
         this.empToTeam = empToTeam;
     }
+
+    public void addTeam(Teams team)
+    {
+        team.addEmployee(this);
+        //this.getEmpToTeam().add(team);
+    }
+
 
 
 }

@@ -44,7 +44,9 @@ public class MainController {
     // login Area
     @GetMapping("/loginpg")
     public String loginPage()
+
     {
+
         return "loginpg";
     }
 
@@ -52,18 +54,29 @@ public class MainController {
     @GetMapping("/addemployee")
     public String showEmployee(Model model) {
 
+
+
+        if(teamRepository.count()<1)
+        {
+            Teams teams = new Teams();
+            teams.setName("Select Team");
+            teamRepository.save(teams);
+
+        }
         model.addAttribute("newemp", new Employee());
         model.addAttribute("listdpt", departmentRepository.findAll());
+        model.addAttribute("listteam", teamRepository.findAll());
 
         return "addemployee";
     }
 
 //    Accepts employee form input, saves to repository, then displays confirmation
     @PostMapping("/addemployee")
-    public String getEmployee(@Valid Employee emp, BindingResult result,Model model) {
-//        if (result.hasErrors()){
-//            return "addemployee";
-//        }
+    public String getEmployee(@RequestParam("Teams")Long teamId, Employee emp, BindingResult result,Model model) {
+
+
+        emp.addTeam(teamRepository.findOne(teamId));
+
         model.addAttribute("emp",emp);
         employeeRepository.save(emp);
         return "confirmemp";
@@ -152,15 +165,18 @@ public class MainController {
     {
      model.addAttribute("newteam", new Teams());
 
-     return "addream";
+     return "addteam";
 
     }
 
     @PostMapping("/addteam")
      public String  addteampost(Model model, Teams teams)
     {
+
         model.addAttribute("newteam",  teams );
         teamRepository.save(teams);
         return "confirmteam";
     }
+
+
 }
